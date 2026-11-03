@@ -420,7 +420,7 @@ function updateChecks() {
     [rangesOK, "Диапазоны в тексте записаны словами"],
     [
       paragraphsOK,
-      sparse ? "Недостаток данных отмечен" : "Три смысловых абзаца",
+      sparse ? "Недостаток данных отмечен" : "Описание в трёх абзацах",
     ],
   ];
   $("#format-checks").replaceChildren();
