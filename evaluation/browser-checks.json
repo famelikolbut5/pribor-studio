@@ -1,0 +1,118 @@
+{
+  "scenarios": [
+    {
+      "check": "JSON download equals displayed card",
+      "passed": true
+    },
+    {
+      "check": "Markdown copies all required blocks",
+      "passed": true
+    },
+    {
+      "check": "Markdown bounded and footer follows content",
+      "passed": true
+    },
+    {
+      "check": "Duplicate JSON blocked before generation",
+      "passed": true
+    },
+    {
+      "check": "Malformed JSON retains previous card",
+      "passed": true
+    },
+    {
+      "check": "Corrected input clears validation error",
+      "passed": true
+    },
+    {
+      "check": "Empty product name blocked with accessible error",
+      "passed": true
+    },
+    {
+      "check": "Multiline spec grows without clipping",
+      "passed": true
+    },
+    {
+      "check": "Added specification can be removed",
+      "passed": true
+    },
+    {
+      "check": "JSON and form round trip preserves data",
+      "passed": true
+    },
+    {
+      "check": "Manual edit updates counters, flags punctuation and clears review",
+      "passed": true
+    },
+    {
+      "check": "Executable source URL is not exposed as link",
+      "passed": true
+    },
+    {
+      "check": "Edited source marks card stale",
+      "passed": true
+    },
+    {
+      "check": "Second sample switches source and result together",
+      "passed": true
+    },
+    {
+      "check": "JSON bounded and footer follows content",
+      "footerTop": 1144.9573974609375,
+      "passed": true,
+      "rawBottom": 1144.9573974609375
+    },
+    {
+      "check": "Selecting sample preserves edits until explicit Load",
+      "passed": true
+    },
+    {
+      "check": "Manual ellipsis range is flagged in editor",
+      "passed": true
+    }
+  ],
+  "viewports": [
+    {
+      "clippedFields": 0,
+      "descriptionFont": "19px",
+      "fieldFont": "18px",
+      "height": 1080,
+      "horizontalOverflow": 0,
+      "width": 1920
+    },
+    {
+      "clippedFields": 0,
+      "height": 768,
+      "horizontalOverflow": 0,
+      "width": 1365
+    },
+    {
+      "clippedFields": 0,
+      "height": 844,
+      "horizontalOverflow": 0,
+      "loadButtonWidth": 312.4289855957031,
+      "width": 390
+    }
+  ],
+  "isolated_api_simulation": {
+    "provider": "simulated, no LLM quality claim",
+    "checks": [
+      {
+        "check": "Waiting shows status and blocks repeated submission",
+        "passed": true
+      },
+      {
+        "check": "Cancel restores controls and preserves previous card",
+        "passed": true
+      },
+      {
+        "check": "Response to previous source remains marked stale after in-flight edit",
+        "passed": true
+      },
+      {
+        "check": "API error preserves current input and previous card",
+        "passed": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "scenarios": [
+    {
+      "check": "Selecting a sample preserves edits until Load",
+      "passed": true
+    },
+    {
+      "check": "Load applies selected source and saved card",
+      "passed": true
+    },
+    {
+      "check": "Native radio keyboard navigation selects next option",
+      "passed": true
+    }
+  ],
+  "viewports": [
+    {
+      "choices": [
+        {
+          "text": "Дифференциальный манометр testo 510",
+          "textFits": true,
+          "withinPanel": true
+        },
+        {
+          "text": "Мини-термометр testo поверхностный",
+          "textFits": true,
+          "withinPanel": true
+        }
+      ],
+      "height": 1080,
+      "horizontalOverflow": 0,
+      "width": 1920
+    },
+    {
+      "height": 768,
+      "horizontalOverflow": 0,
+      "labelsFit": true,
+      "width": 1365
+    },
+    {
+      "height": 844,
+      "horizontalOverflow": 0,
+      "labelsFit": true,
+      "width": 390
+    }
+  ]
+}

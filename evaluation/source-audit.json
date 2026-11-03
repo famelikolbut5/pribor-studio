@@ -1,0 +1,6 @@
+{
+  "files_scanned": 61,
+  "python_files": 12,
+  "scope": "app, tests, documentation, examples and evaluation; excludes Git metadata and caches",
+  "findings": []
+}

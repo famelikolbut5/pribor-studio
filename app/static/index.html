@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ru" data-design="workbench">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+    <title>Прибор | Редактор товарных карточек</title>
+    <link rel="stylesheet" href="/static/fonts/fonts.css" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script type="module" src="/static/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#source-name">Перейти к исходным данным</a>
+    <header class="app-header">
+      <a href="/" class="brand" aria-label="Прибор, на главную">
+        <span class="brand-mark" aria-hidden="true"
+          ><i></i><i></i><i></i><i></i><i></i
+        ></span>
+        <span>прибор<span class="brand-dot">.</span></span>
+      </a>
+      <nav class="header-nav" aria-label="Разделы редактора">
+        <a href="#source-heading">Данные</a
+        ><a href="#result-heading">Карточка</a
+        ><a href="#review-heading">Проверка</a>
+      </nav>
+    </header>
+
+    <main class="workspace">
+      <div class="page-heading">
+        <h1>Подготовка товарного описания</h1>
+      </div>
+      <div class="editor-grid">
+        <section class="source-panel panel" aria-labelledby="source-heading">
+          <div class="panel-heading">
+            <h2 id="source-heading">Данные прибора</h2>
+            <span id="spec-count" class="source-count">Загрузка</span>
+          </div>
+          <div class="input-toolbar">
+            <fieldset class="example-picker">
+              <legend>Пример товара</legend>
+              <div id="example-options" class="example-options"></div>
+            </fieldset>
+            <button
+              id="load-example"
+              class="secondary-button load-example"
+              aria-label="Загрузить выбранный пример"
+              title="Загрузить выбранный пример"
+              disabled
+            >
+              Загрузить
+            </button>
+          </div>
+          <div class="segmented" role="group" aria-label="Формат ввода">
+            <button id="form-tab" class="selected" aria-pressed="true">
+              Форма</button
+            ><button id="json-tab" aria-pressed="false">JSON</button>
+          </div>
+          <div
+            id="input-error"
+            class="inline-error"
+            role="alert"
+            tabindex="-1"
+            hidden
+          ></div>
+          <div id="form-view">
+            <label class="field-label" for="source-name"
+              >Название прибора
+              <span class="required-marker" aria-hidden="true">*</span></label
+            >
+            <textarea
+              id="source-name"
+              class="auto-size"
+              aria-required="true"
+              rows="2"
+              autocomplete="off"
+              maxlength="250"
+              placeholder="Название и модель из источника"
+            ></textarea>
+            <label class="field-label" for="source-manufacturer"
+              >Производитель</label
+            >
+            <textarea
+              id="source-manufacturer"
+              class="auto-size"
+              rows="1"
+              autocomplete="off"
+              maxlength="150"
+              placeholder="Как указано в источнике"
+            ></textarea>
+            <div class="field-label label-with-action">
+              <span id="specs-label">Характеристики</span
+              ><button id="add-spec" class="text-button">
+                Добавить параметр
+              </button>
+            </div>
+
+            <div
+              class="spec-editor"
+              id="specs-table"
+              role="group"
+              aria-labelledby="specs-label"
+            ></div>
+            <label class="field-label" for="source-description"
+              >Описание или фрагмент паспорта</label
+            >
+            <textarea
+              id="source-description"
+              class="auto-size"
+              rows="6"
+              maxlength="20000"
+              placeholder="Назначение, особенности и условия применения из источника"
+            ></textarea>
+
+            <label class="field-label" for="source-url"
+              >Ссылка на источник</label
+            >
+            <textarea
+              id="source-url"
+              class="auto-size"
+              rows="2"
+              inputmode="url"
+              maxlength="2000"
+              placeholder="Ссылка на страницу или паспорт"
+            ></textarea>
+          </div>
+          <div id="json-view" hidden>
+            <label class="field-label" for="source-json">Входной JSON</label>
+            <textarea
+              id="source-json"
+              spellcheck="false"
+              rows="24"
+              aria-describedby="json-help"
+            ></textarea>
+            <p id="json-help" class="field-note">
+              Минимальный ввод содержит name. Поля manufacturer, specs,
+              description и source_url можно не указывать.
+            </p>
+          </div>
+          <div class="source-footnote">
+            <a
+              id="source-link"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Открыть источник товара</a
+            >
+          </div>
+        </section>
+
+        <section class="result-panel panel" aria-labelledby="result-heading">
+          <div class="result-toolbar">
+            <h2 id="result-heading">Карточка товара</h2>
+            <div
+              class="result-tabs"
+              role="group"
+              aria-label="Формат результата"
+            >
+              <button
+                data-result="preview"
+                class="selected"
+                aria-pressed="true"
+              >
+                Просмотр</button
+              ><button data-result="markdown" aria-pressed="false">
+                Markdown</button
+              ><button data-result="json" aria-pressed="false">JSON</button>
+            </div>
+          </div>
+          <div class="generation-bar">
+            <div class="model-control">
+              <label for="model-select">Модель для текста</label>
+              <div class="model-input">
+                <select id="model-select">
+                  <option value="gpt-6.1-sol">GPT-6.1 Sol</option>
+                </select>
+              </div>
+              <span id="model-note"></span>
+            </div>
+            <button id="generate" class="primary-button">
+              Создать черновик
+            </button>
+          </div>
+          <div
+            id="request-status"
+            class="request-status"
+            role="status"
+            aria-live="polite"
+            hidden
+          ></div>
+          <div
+            id="api-error"
+            class="inline-error result-error"
+            role="alert"
+            tabindex="-1"
+            hidden
+          ></div>
+          <div
+            id="stale-notice"
+            class="notice notice-warning"
+            role="status"
+            hidden
+          >
+            Исходные данные изменены. Черновик относится к предыдущему вводу.
+          </div>
+          <div class="document-wrap">
+            <article id="card-preview" class="card-document">
+              <div class="document-title-row">
+                <span class="document-section-label">SEO-заголовок</span
+                ><span id="title-counter" class="counter">До 70 символов</span>
+              </div>
+              <h2
+                id="card-title"
+                contenteditable="plaintext-only"
+                role="textbox"
+                aria-multiline="false"
+                spellcheck="true"
+                aria-label="Редактировать SEO-заголовок"
+              >
+                Название вашего прибора
+              </h2>
+              <div class="document-title-row description-heading">
+                <h3>Описание</h3>
+                <span id="description-counter" class="counter"
+                  >От 800 до 1200 символов</span
+                >
+              </div>
+              <div
+                id="card-description"
+                class="description-text"
+                contenteditable="plaintext-only"
+                role="textbox"
+                aria-multiline="true"
+                spellcheck="true"
+                aria-label="Редактировать описание"
+              >
+                <p>Загрузите пример товара или заполните исходные данные.</p>
+              </div>
+              <section class="document-section">
+                <div class="document-title-row">
+                  <h3>Ключевые характеристики</h3>
+                </div>
+                <dl id="card-specs" class="spec-list"></dl>
+              </section>
+              <section class="document-section">
+                <div class="document-title-row">
+                  <h3>Поисковые запросы</h3>
+                  <span id="queries-counter" class="section-note"
+                    >От 3 до 5 запросов</span
+                  >
+                </div>
+                <ul id="card-queries" class="query-list"></ul>
+              </section>
+              <section class="commercial-block">
+                <h3>Для менеджера</h3>
+                <div class="commercial-grid">
+                  <div>
+                    <h4>Кому подходит</h4>
+                    <p id="card-audience">Данных пока нет.</p>
+                  </div>
+                  <div>
+                    <h4>Какие задачи решает</h4>
+                    <p id="card-tasks">Данных пока нет.</p>
+                  </div>
+                </div>
+              </section>
+            </article>
+            <pre id="raw-output" class="raw-output" tabindex="0" hidden></pre>
+          </div>
+          <div class="export-bar">
+            <button id="copy-result" class="secondary-button" disabled>
+              Копировать Markdown</button
+            ><button
+              id="download-result"
+              class="secondary-button"
+              aria-label="Скачать JSON"
+              disabled
+            >
+              Скачать JSON
+            </button>
+          </div>
+        </section>
+
+        <aside class="review-panel panel" aria-labelledby="review-heading">
+          <div class="review-heading">
+            <h2 id="review-heading">Перед публикацией</h2>
+          </div>
+          <div id="format-checks" class="check-list"></div>
+          <section class="missing-section">
+            <div class="review-section-heading">
+              <h3>Нужно уточнить</h3>
+              <span id="missing-count">0</span>
+            </div>
+            <ul id="missing-list">
+              <li>Сначала создайте черновик.</li>
+            </ul>
+          </section>
+          <section id="warnings-section" class="warnings-section" hidden>
+            <h3>Обратите внимание</h3>
+            <ul id="warnings-list"></ul>
+          </section>
+          <div class="human-review">
+            <p>
+              Сверьте назначение, значения и условия применения с паспортом.
+            </p>
+            <label
+              ><input type="checkbox" id="reviewed-checkbox" />Я проверил текст
+              по источнику</label
+            >
+          </div>
+          <div class="review-source">
+            <span>Источник данных</span>
+            <p id="review-source-name">Ваш JSON или технический паспорт</p>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <div id="toast" class="toast" role="status" hidden></div>
+  </body>
+</html>

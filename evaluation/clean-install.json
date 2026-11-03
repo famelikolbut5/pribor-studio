@@ -1,0 +1,54 @@
+{
+  "python": "3.12.14",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/api/examples",
+      "status": 200,
+      "content_type": "application/json"
+    },
+    {
+      "path": "/api/docs",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/openapi.json",
+      "status": 200,
+      "content_type": "application/json"
+    },
+    {
+      "path": "/static/app.js",
+      "status": 200,
+      "content_type": "text/javascript; charset=utf-8"
+    },
+    {
+      "path": "/static/input.mjs",
+      "status": 200,
+      "content_type": "text/javascript; charset=utf-8"
+    },
+    {
+      "path": "/static/styles.css",
+      "status": 200,
+      "content_type": "text/css; charset=utf-8"
+    },
+    {
+      "path": "/static/fonts/fonts.css",
+      "status": 200,
+      "content_type": "text/css; charset=utf-8"
+    },
+    {
+      "path": "/static/favicon.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "case": "generation_without_key",
+      "status": 503
+    }
+  ]
+}
