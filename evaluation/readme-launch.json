@@ -1,0 +1,69 @@
+{
+  "checkout": "isolated Git clone",
+  "platform": "Windows",
+  "python": "3.12.14",
+  "environment": "new venv, dependencies installed from requirements.txt",
+  "configuration": ".env copied from .env.example, no API key",
+  "port": 8766,
+  "port_reason": "main editor already runs on 8765",
+  "unit_tests": 63,
+  "unit_result": "passed",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/api/examples",
+      "status": 200
+    },
+    {
+      "path": "/api/docs",
+      "status": 200
+    },
+    {
+      "path": "/openapi.json",
+      "status": 200
+    },
+    {
+      "path": "/static/app.js",
+      "status": 200
+    },
+    {
+      "path": "/static/input.mjs",
+      "status": 200
+    },
+    {
+      "path": "/static/styles.css",
+      "status": 200
+    },
+    {
+      "path": "/static/fonts/fonts.css",
+      "status": 200
+    },
+    {
+      "path": "/static/favicon.svg",
+      "status": 200
+    },
+    {
+      "path": "/static/fonts/font-0.ttf",
+      "status": 200
+    },
+    {
+      "path": "/static/fonts/font-1.ttf",
+      "status": 200
+    },
+    {
+      "path": "/static/fonts/font-2.ttf",
+      "status": 200
+    },
+    {
+      "path": "/static/fonts/font-3.ttf",
+      "status": 200
+    },
+    {
+      "case": "generation_without_key",
+      "status": 503
+    }
+  ]
+}
